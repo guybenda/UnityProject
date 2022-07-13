@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public int health = 100;
+    public int maxHealth = 100;
+
     // Start is called before the first frame update
     void Start()
     {
