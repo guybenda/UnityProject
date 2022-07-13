@@ -12,6 +12,7 @@ public class GameManagerScript : MonoBehaviour
     public static GameManagerScript Instance;
 
     public GameObject[] viruses;
+
     private void Awake()
     {
         if (Instance != null)
