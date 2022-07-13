@@ -9,13 +9,26 @@ enum GameState
 
 public class GameManagerScript : MonoBehaviour
 {
+    public static GameManagerScript Instance;
+
     public GameObject[] viruses;
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+
         viruses = Resources.LoadAll<GameObject>("Viruses");
-        Debug.Log(viruses.Length);
     }
 
     // Update is called once per frame
