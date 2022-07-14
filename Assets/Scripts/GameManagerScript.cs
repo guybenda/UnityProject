@@ -12,6 +12,7 @@ public class GameManagerScript : MonoBehaviour
     public static GameManagerScript Instance;
 
     public GameObject[] viruses;
+    public int selectedVirus;
 
     private void Awake()
     {
@@ -28,7 +29,6 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         viruses = Resources.LoadAll<GameObject>("Viruses");
     }
 
