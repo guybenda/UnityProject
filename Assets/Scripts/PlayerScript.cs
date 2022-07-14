@@ -54,7 +54,7 @@ public class PlayerScript : MonoBehaviour
     void Shoot()
     {
         //TODO
-        Debug.Log("Shoot!");
+        //Debug.Log("Shoot!");
 
         GameObject proj = Instantiate(projectile, virusModelContainer.transform.position,
                                                      virusModelContainer.transform.rotation);
@@ -73,6 +73,13 @@ public class PlayerScript : MonoBehaviour
     void Shoot2()
     {
         //TODO
-        Debug.Log("Shoot 2!");
+        //Debug.Log("Shoot 2!");
+    }
+
+    public void Damage(int damage)
+    {
+        health -= damage;
+        Debug.Log("OW! " + damage);
+        //TODO die
     }
 }

@@ -29,7 +29,7 @@ public class PlayerBulletScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 6) return;
 
-        Debug.Log("AM COLLIDE!! " + collision.collider.name);
+        //Debug.Log("AM COLLIDE!! " + collision.collider.name);
 
         if (collision.gameObject.TryGetComponent<EnemyScript>(out EnemyScript enemy))
         {
