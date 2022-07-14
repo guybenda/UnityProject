@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class StartSceneManagerScript : MonoBehaviour
@@ -18,36 +19,38 @@ public class StartSceneManagerScript : MonoBehaviour
     private Vector3 targetPosition = Vector3.zero;
     private Vector3 originalPosition = Vector3.zero;
 
-    private GameManagerScript gameManager;
+    private InputAction d;
+    private InputAction a;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManagerScript>();
-
         targetPosition = viruses.transform.position;
         originalPosition = viruses.transform.position;
 
         viruses.transform.GetChild(currentVirus).localScale += Vector3.one * 0.4f;
+
+        d = new InputAction(binding: "<keyboard>/d");
+        d.performed += _ => NextVirus();
+        d.Enable();
+
+        a = new InputAction(binding: "<keyboard>/a");
+        a.performed += _ => PrevVirus();
+        a.Enable();
+    }
+
+    void OnDestroy()
+    {
+        d.Disable();
+        a.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            NextVirus();
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            PrevVirus();
-        }
-
         Vector3 currentPosition = viruses.transform.position;
 
         viruses.transform.position = Vector3.SmoothDamp(currentPosition, targetPosition, ref velocity, smoothTime);
-
     }
 
     void NextVirus()
@@ -82,7 +85,7 @@ public class StartSceneManagerScript : MonoBehaviour
 
     public void PressBegin()
     {
-        gameManager.selectedVirus = currentVirus;
+        GameManagerScript.Instance.selectedVirus = currentVirus;
         SceneManager.LoadScene("Level1Scene");
     }
 

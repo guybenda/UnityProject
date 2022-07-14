@@ -12,7 +12,7 @@ public class GameManagerScript : MonoBehaviour
     public static GameManagerScript Instance;
 
     public GameObject[] viruses;
-    public int selectedVirus;
+    public int selectedVirus = -1;
 
     private void Awake()
     {
@@ -24,17 +24,28 @@ public class GameManagerScript : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        viruses = Resources.LoadAll<GameObject>("Viruses");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        viruses = Resources.LoadAll<GameObject>("Viruses");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public GameObject GetVirus()
+    {
+        if (selectedVirus == -1)
+        {
+            selectedVirus = Random.Range(0, viruses.Length);
+        }
+
+        return Instantiate(viruses[selectedVirus], Vector3.zero, Quaternion.identity);
     }
 }
