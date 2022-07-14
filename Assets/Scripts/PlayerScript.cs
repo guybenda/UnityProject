@@ -28,7 +28,6 @@ public class PlayerScript : MonoBehaviour
         virusModelContainer.transform.GetChild(0).transform.localRotation = Quaternion.identity;
 
         projectile = GameManagerScript.Instance.GetVirus();
-        projectile.transform.localScale *= 0.2f;
 
         m1 = new InputAction(binding: "<Mouse>/leftButton");
         m1.performed += _ => Shoot();
@@ -59,8 +58,11 @@ public class PlayerScript : MonoBehaviour
 
         GameObject proj = Instantiate(projectile, virusModelContainer.transform.position,
                                                      virusModelContainer.transform.rotation);
+        proj.transform.localScale *= 0.2f;
+
         proj.AddComponent<PlayerBulletScript>();
-        proj.AddComponent<Rigidbody>().AddForce(Camera.main.transform.forward * shootVelocity, ForceMode.VelocityChange);
+        var direction = Camera.main.transform.forward * shootVelocity + Camera.main.transform.right * 0.5f + Camera.main.transform.up * 4f;
+        proj.AddComponent<Rigidbody>().AddForce(direction + Random.onUnitSphere * 2f, ForceMode.VelocityChange);
 
         // Camera.main.transform.rotation.
 
