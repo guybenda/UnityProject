@@ -86,6 +86,9 @@ public class StartSceneManagerScript : MonoBehaviour
     public void PressBegin()
     {
         GameManagerScript.Instance.selectedVirus = currentVirus;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         SceneManager.LoadScene("Level1Scene");
     }
 

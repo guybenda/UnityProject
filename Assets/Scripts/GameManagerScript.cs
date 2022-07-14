@@ -46,6 +46,6 @@ public class GameManagerScript : MonoBehaviour
             selectedVirus = Random.Range(0, viruses.Length);
         }
 
-        return Instantiate(viruses[selectedVirus], Vector3.zero, Quaternion.identity);
+        return viruses[selectedVirus];
     }
 }
