@@ -13,6 +13,14 @@ public class Level1EndTriggerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().Win();
+        }
     }
 }

@@ -11,7 +11,8 @@ public class PlayerScript : MonoBehaviour
     public int maxHealth = 100;
     public GameObject virusModelContainer;
     public float shootVelocity = 30f;
-    //GameObject projectile;
+
+    int tripleShotTimer = 0;
 
     InputAction m1;
     InputAction m2;
@@ -20,7 +21,6 @@ public class PlayerScript : MonoBehaviour
 
     Text healthText;
     Text equipmentText;
-    Image deathScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -47,19 +47,17 @@ public class PlayerScript : MonoBehaviour
 
         hud = GameObject.FindGameObjectWithTag("HUD");
         healthText = GameObject.FindGameObjectWithTag("HUDHealth").GetComponent<Text>();
-        deathScreen = GameObject.FindGameObjectWithTag("HUDDeathScreen").GetComponent<Image>();
-
-        var texts = deathScreen.GetComponentsInChildren<Button>(true);
-
-        texts[0].onClick.AddListener(() => GameManagerScript.Instance.RestartLevel());
-        texts[1].onClick.AddListener(() => GameManagerScript.Instance.Quit());
-
     }
 
     // Update is called once per frame
     void Update()
     {
         healthText.text = $"\u2665 {health} / {maxHealth}";
+    }
+
+    void FixedUpdate()
+    {
+        tripleShotTimer = Mathf.Clamp(tripleShotTimer - 1, 0, 10000);
     }
 
     void OnDestroy()
@@ -70,6 +68,22 @@ public class PlayerScript : MonoBehaviour
 
     void Shoot()
     {
+        if (tripleShotTimer > 0)
+        {
+            ShootProjectile((Camera.main.transform.forward + Camera.main.transform.right * -0.05f + Camera.main.transform.up * 0.1f) * shootVelocity + Random.insideUnitSphere * 0.1f);
+            ShootProjectile((Camera.main.transform.forward + Camera.main.transform.right * 0.05f + Camera.main.transform.up * 0.2f) * shootVelocity + Random.insideUnitSphere * 0.1f);
+            ShootProjectile((Camera.main.transform.forward + Camera.main.transform.right * 0.15f + Camera.main.transform.up * 0.1f) * shootVelocity + Random.insideUnitSphere * 0.1f);
+        }
+        else
+        {
+            var direction = (Camera.main.transform.forward + Camera.main.transform.right * 0.05f + Camera.main.transform.up * 0.15f) * shootVelocity + Random.insideUnitSphere * 0.8f;
+            ShootProjectile(direction);
+        }
+
+    }
+
+    void ShootProjectile(Vector3 direction)
+    {
         GameObject proj = Instantiate(GameManagerScript.Instance.GetRandomVirus(), virusModelContainer.transform.position,
                                                      virusModelContainer.transform.rotation);
         proj.transform.localScale *= 0.3f;
@@ -77,20 +91,20 @@ public class PlayerScript : MonoBehaviour
         var bullet = proj.AddComponent<PlayerBulletScript>();
         bullet.damage = 20;
 
-        var direction = (Camera.main.transform.forward + Camera.main.transform.right * 0.05f + Camera.main.transform.up * 0.15f) * shootVelocity;
         var rigidbody = proj.AddComponent<Rigidbody>();
         rigidbody.AddTorque(Random.insideUnitSphere * 80f, ForceMode.VelocityChange);
-        rigidbody.AddForce(direction + Random.insideUnitSphere * 0.8f, ForceMode.VelocityChange);
-
+        rigidbody.AddForce(direction, ForceMode.VelocityChange);
     }
 
     void Shoot2()
-    { 
+    {
         //TODO
     }
 
     public void Damage(int damage)
     {
+        if (health <= 0) return;
+
         health -= damage;
         Debug.Log("OW! " + damage);
 
@@ -98,6 +112,10 @@ public class PlayerScript : MonoBehaviour
         {
             health = 0;
             Die();
+        }
+        else
+        {
+            StartCoroutine(HitRoutine());
         }
     }
 
@@ -109,8 +127,30 @@ public class PlayerScript : MonoBehaviour
         StartCoroutine(DieRoutine());
     }
 
+    public void Win()
+    {
+        StartCoroutine(VictoryRoutine());
+    }
+
+    public void AddPowerUp(PowerupType powerup)
+    {
+        switch (powerup)
+        {
+            case PowerupType.Tripleshot:
+                tripleShotTimer = 600;
+                break;
+            case PowerupType.Health:
+                break;
+            default:
+                break;
+        }
+    }
+
     IEnumerator DieRoutine()
     {
+        Destroy(GameObject.FindGameObjectWithTag("HUDVictoryScreen"));
+        Image deathScreen = GameObject.FindGameObjectWithTag("HUDDeathScreen").GetComponent<Image>();
+
         bool done = false;
         Color color = deathScreen.color;
 
@@ -139,8 +179,75 @@ public class PlayerScript : MonoBehaviour
             Destroy(enemy);
         }
 
+        var texts1 = deathScreen.GetComponentsInChildren<Button>(true);
+
+        texts1[0].onClick.AddListener(() => GameManagerScript.Instance.RestartLevel());
+        texts1[1].onClick.AddListener(() => GameManagerScript.Instance.Quit());
+
         Destroy(gameObject);
 
         new GameObject("camera", typeof(Camera)).tag = "MainCamera";
+    }
+
+    IEnumerator VictoryRoutine()
+    {
+        Destroy(GameObject.FindGameObjectWithTag("HUDDeathScreen"));
+        Image victoryScreen = GameObject.FindGameObjectWithTag("HUDVictoryScreen").GetComponent<Image>();
+
+        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+
+        bool done = false;
+        Color color = victoryScreen.color;
+
+        while (!done)
+        {
+            color.a += 0.05f;
+            victoryScreen.color = color;
+            done = color.a >= 1;
+            yield return new WaitForFixedUpdate();
+        }
+
+        var texts = victoryScreen.gameObject.GetComponentsInChildren<Text>(true);
+
+        foreach (var text in texts)
+        {
+            yield return new WaitForSeconds(0.5f);
+            text.gameObject.SetActive(true);
+        }
+
+        var texts2 = victoryScreen.GetComponentsInChildren<Button>(true);
+
+        texts2[0].onClick.AddListener(() => GameManagerScript.Instance.NextLevel());
+        texts2[1].onClick.AddListener(() => GameManagerScript.Instance.Quit());
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Destroy(gameObject);
+
+        new GameObject("camera", typeof(Camera)).tag = "MainCamera";
+    }
+
+    IEnumerator HitRoutine()
+    {
+        var image = hud.GetComponent<Image>();
+
+        Color color = image.color;
+        color.a += 0.20f;
+        image.color = color;
+        yield return new WaitForFixedUpdate();
+
+
+        for (int i = 0; i < 10; i++)
+        {
+            Color newcolor = image.color;
+            newcolor.a -= 0.02f;
+            image.color = newcolor;
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - HUDDeathScreen
   - HUDEquipment
   - Enemy
+  - HUDVictoryScreen
   layers:
   - Default
   - TransparentFX

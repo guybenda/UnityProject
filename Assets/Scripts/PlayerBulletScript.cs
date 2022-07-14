@@ -27,7 +27,7 @@ public class PlayerBulletScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 6) return;
+        if (collision.gameObject.layer == 6 || collision.gameObject.layer == 9) return;
 
         //Debug.Log("AM COLLIDE!! " + collision.collider.name);
 
