@@ -8387,7 +8387,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0, g: 1, b: 0.53136873, a: 1}
   m_Intensity: 4.02
-  m_Range: 16.9
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -11487,7 +11487,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0, g: 1, b: 0.9374714, a: 1}
   m_Intensity: 6.63
-  m_Range: 2.1350708
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -14350,7 +14350,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.7287828, b: 0, a: 1}
   m_Intensity: 2.67
-  m_Range: 24.19
+  m_Range: 27
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -14444,7 +14444,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0, g: 1, b: 0.87667346, a: 1}
   m_Intensity: 6.63
-  m_Range: 7.981504
+  m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -15158,7 +15158,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.8450398, b: 0, a: 1}
   m_Intensity: 6.63
-  m_Range: 2.1350708
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -15929,7 +15929,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.8450398, b: 0, a: 1}
   m_Intensity: 6.63
-  m_Range: 2.1350708
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -16997,7 +16997,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.7287828, b: 0, a: 1}
   m_Intensity: 1.09
-  m_Range: 24.19
+  m_Range: 27
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -19144,7 +19144,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.8450398, b: 0, a: 1}
   m_Intensity: 6.63
-  m_Range: 2.1350708
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -24150,7 +24150,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.10678721, g: 0, b: 0.3207547, a: 1}
   m_Intensity: 5.51
-  m_Range: 17.62
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -26589,7 +26589,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0, g: 1, b: 0.87667346, a: 1}
   m_Intensity: 6.63
-  m_Range: 2.6372757
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -31890,7 +31890,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.10849057, g: 0.19774514, b: 0.4339623, a: 1}
   m_Intensity: 6.63
-  m_Range: 9.678438
+  m_Range: 13
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -42561,7 +42561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1277821310618234814}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: L2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42577,7 +42577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 797989562022530299}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bone.004_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42594,8 +42594,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4095737050562864762}
   - component: {fileID: 4095737050562864763}
-  m_Layer: 0
-  m_Name: mask
+  - component: {fileID: 4095737050562864764}
+  m_Layer: 7
+  m_Name: MaskEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42611,7 +42612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8954687562946060875}
   - component: {fileID: 205403070212929071}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42625,16 +42626,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3719176735267552448}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.65, y: 5.88, z: 47.706284}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalRotation: {x: 0.22418572, y: 0, z: 0, w: 0.9745465}
+  m_LocalPosition: {x: 8.06, y: 3.92, z: 62.29}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4928677932158645988}
   - {fileID: 8954687562946060875}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25.91, y: 0, z: 0}
 --- !u!95 &4095737050562864763
 Animator:
   serializedVersion: 4
@@ -42655,6 +42656,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &4095737050562864764
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3719176735267552448}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 4.62
+  m_Height: 11.91
+  m_Direction: 0
+  m_Center: {x: 0, y: 2.89, z: -0.91}
 --- !u!1 &4917191453554944295
 GameObject:
   m_ObjectHideFlags: 0
@@ -42664,7 +42679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 635416759189110559}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: R1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42697,7 +42712,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8469189408059048509}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: L2_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42713,7 +42728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7757827097235545505}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: L1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42729,7 +42744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4928677932158645988}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42777,7 +42792,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7241045381562302922}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bone.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42807,7 +42822,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3929198931201789134}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 24.47, y: 6.78, z: -2.7948384}
+  m_LocalPosition: {x: 0.38, y: 6.78, z: -2.7948384}
   m_LocalScale: {x: 75.671875, y: 75.671875, z: 75.671875}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43115,7 +43130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7166016140308909059, guid: 12da1cafa0a8cad4c886ac151e5eef12, type: 3}
       propertyPath: CameraCollisionFilter.m_Bits
-      value: 705
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7247803398052561584, guid: 12da1cafa0a8cad4c886ac151e5eef12, type: 3}
       propertyPath: m_Layer

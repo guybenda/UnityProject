@@ -22,12 +22,14 @@ public class PlayerBulletScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("AM COLLIDE!! "+collision.collider.name);
+        if (collision.gameObject.layer == 6) return;
+
+        Debug.Log("AM COLLIDE!! " + collision.collider.name);
 
         if (collision.gameObject.TryGetComponent<EnemyScript>(out EnemyScript enemy))
         {

@@ -60,9 +60,11 @@ public class PlayerScript : MonoBehaviour
                                                      virusModelContainer.transform.rotation);
         proj.transform.localScale *= 0.2f;
 
-        proj.AddComponent<PlayerBulletScript>();
+        var bullet = proj.AddComponent<PlayerBulletScript>();
+        bullet.damage = 20;
+        
         var direction = Camera.main.transform.forward * shootVelocity + Camera.main.transform.right * 0.5f + Camera.main.transform.up * 4f;
-        proj.AddComponent<Rigidbody>().AddForce(direction + Random.onUnitSphere * 2f, ForceMode.VelocityChange);
+        proj.AddComponent<Rigidbody>().AddForce(direction + Random.onUnitSphere * 0.8f, ForceMode.VelocityChange);
 
         // Camera.main.transform.rotation.
 
