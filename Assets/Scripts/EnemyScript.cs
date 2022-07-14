@@ -13,11 +13,13 @@ public enum EnemyState
 public class EnemyScript : MonoBehaviour
 {
     public int health = 100;
-    public const int maxHealth = 100;
-    public const int playerNoticeTreshold = 120;
-    public const float detectDistance = 30f;
-    public const int damage = 5;
-    public const int damageDelay = 30;
+    public int maxHealth = 100;
+    public int playerNoticeTreshold = 120;
+    public float detectDistance = 30f;
+    public int damage = 5;
+    public int damageDelay = 30;
+    public float normalSpeed = 2f;
+    public float chaseSpeed = 4f;
 
     public Transform[] waypoints;
 
@@ -52,7 +54,7 @@ public class EnemyScript : MonoBehaviour
 
         if (TryFindPlayer())
         {
-            Debug.Log(gameObject.name + " CAN SEE PLAYER - " + playerNoticing);
+            //Debug.Log(gameObject.name + " CAN SEE PLAYER - " + playerNoticing);
             playerNoticing = Mathf.Clamp(playerNoticing + 4, 0, playerNoticeTreshold);
         }
         else
@@ -63,9 +65,12 @@ public class EnemyScript : MonoBehaviour
         switch (state)
         {
             case EnemyState.idle:
+                agent.speed = normalSpeed;
+
                 if (playerNoticing >= playerNoticeTreshold)
                 {
                     state = EnemyState.chasing;
+                    animator.SetBool("isAttacking", true);
                     agent.autoBraking = true;
                 }
                 else if (!agent.pathPending && agent.remainingDistance < 0.5f)
@@ -76,8 +81,9 @@ public class EnemyScript : MonoBehaviour
                 break;
             case EnemyState.chasing:
                 agent.destination = playerTarget.transform.position;
+                agent.speed = chaseSpeed;
 
-                if ((playerTarget.transform.position - transform.position).magnitude < 2f && currentDamageDelay == 0)
+                if ((playerTarget.transform.position - transform.position).magnitude < 3f && currentDamageDelay == 0)
                 {
                     player.Damage(damage);
                     currentDamageDelay = damageDelay;
@@ -86,6 +92,7 @@ public class EnemyScript : MonoBehaviour
                 if (playerNoticing == 0)
                 {
                     state = EnemyState.idle;
+                    animator.SetBool("isAttacking", false);
                     agent.autoBraking = false;
                     GotoNextPoint();
                 }
@@ -116,6 +123,7 @@ public class EnemyScript : MonoBehaviour
         //if (Physics.Raycast(transform.position + Vector3.up * 2f, (playerCamera.transform.position - Vector3.up * 3) - transform.position, out RaycastHit hit, detectDistance, mask))
         if (Physics.Raycast(transform.position, playerTarget.transform.position - transform.position, out RaycastHit hit, detectDistance, mask))
         {
+            //hit.collider.gameObject.transform.localScale = Vector3.zero;
             if (hit.collider.gameObject.layer == 6)
             {
                 return true;
