@@ -12,6 +12,7 @@ TagManager:
   - HUDEquipment
   - Enemy
   - HUDVictoryScreen
+  - Waypoint
   layers:
   - Default
   - TransparentFX
