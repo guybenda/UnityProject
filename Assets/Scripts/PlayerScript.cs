@@ -8,7 +8,7 @@ public class PlayerScript : MonoBehaviour
     public int health = 100;
     public int maxHealth = 100;
     public GameObject virusModelContainer;
-    public float shootVelocity = 12f;
+    public float shootVelocity = 30f;
     GameObject projectile;
 
     InputAction m1;

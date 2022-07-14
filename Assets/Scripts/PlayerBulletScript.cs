@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class PlayerBulletScript : MonoBehaviour
 {
-    public float killTime = 0.5f;
+    public float killTime = 2f;
+    public int damage = 10;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.layer = 9;
+        var collider = gameObject.AddComponent<SphereCollider>();
+        collider.center = Vector3.zero;
+        collider.radius = 0.25f;
+        //collider.isTrigger = true;
 
         Destroy(gameObject, killTime);
     }
@@ -16,6 +23,18 @@ public class PlayerBulletScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("AM COLLIDE!! "+collision.collider.name);
+
+        if (collision.gameObject.TryGetComponent<EnemyScript>(out EnemyScript enemy))
+        {
+            enemy.Damage(damage);
+        }
+
+        Destroy(gameObject);
     }
 
     IEnumerator Kill()
