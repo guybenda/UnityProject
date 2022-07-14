@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour
     public int maxHealth = 100;
     public GameObject virusModelContainer;
     public float shootVelocity = 30f;
-    GameObject projectile;
+    //GameObject projectile;
 
     InputAction m1;
     InputAction m2;
@@ -27,7 +27,7 @@ public class PlayerScript : MonoBehaviour
         virusModelContainer.transform.GetChild(0).transform.localPosition = Vector3.zero;
         virusModelContainer.transform.GetChild(0).transform.localRotation = Quaternion.identity;
 
-        projectile = GameManagerScript.Instance.GetVirus();
+        //projectile = GameManagerScript.Instance.GetVirus();
 
         m1 = new InputAction(binding: "<Mouse>/leftButton");
         m1.performed += _ => Shoot();
@@ -53,27 +53,23 @@ public class PlayerScript : MonoBehaviour
 
     void Shoot()
     {
-        //TODO
-        //Debug.Log("Shoot!");
-
-        GameObject proj = Instantiate(projectile, virusModelContainer.transform.position,
+        GameObject proj = Instantiate(GameManagerScript.Instance.GetRandomVirus(), virusModelContainer.transform.position,
                                                      virusModelContainer.transform.rotation);
-        proj.transform.localScale *= 0.2f;
+        proj.transform.localScale *= 0.3f;
 
         var bullet = proj.AddComponent<PlayerBulletScript>();
         bullet.damage = 20;
-        
-        var direction = Camera.main.transform.forward * shootVelocity + Camera.main.transform.right * 0.5f + Camera.main.transform.up * 4f;
-        proj.AddComponent<Rigidbody>().AddForce(direction + Random.onUnitSphere * 0.8f, ForceMode.VelocityChange);
 
-        // Camera.main.transform.rotation.
+        var direction = (Camera.main.transform.forward  + Camera.main.transform.right * 0.05f + Camera.main.transform.up * 0.15f) * shootVelocity;
+        var rigidbody = proj.AddComponent<Rigidbody>();
+        rigidbody.AddTorque(Random.insideUnitSphere * 80f, ForceMode.VelocityChange);
+        rigidbody.AddForce(direction + Random.insideUnitSphere * 0.8f, ForceMode.VelocityChange);
 
     }
 
     void Shoot2()
     {
         //TODO
-        //Debug.Log("Shoot 2!");
     }
 
     public void Damage(int damage)

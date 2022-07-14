@@ -48,4 +48,8 @@ public class GameManagerScript : MonoBehaviour
 
         return viruses[selectedVirus];
     }
+    public GameObject GetRandomVirus()
+    {
+        return viruses[Random.Range(0, viruses.Length)];
+    }
 }

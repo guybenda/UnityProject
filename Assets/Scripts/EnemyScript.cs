@@ -73,7 +73,7 @@ public class EnemyScript : MonoBehaviour
                     animator.SetBool("isAttacking", true);
                     agent.autoBraking = true;
                 }
-                else if (!agent.pathPending && agent.remainingDistance < 0.5f)
+                else if (!agent.pathPending && agent.remainingDistance < 2f)
                 {
                     GotoNextPoint();
                 }
@@ -138,7 +138,7 @@ public class EnemyScript : MonoBehaviour
         if (waypoints.Length == 0)
             return;
 
-        agent.destination = waypoints[Random.Range(0, waypoints.Length - 1)].position;
+        agent.destination = waypoints[Random.Range(0, waypoints.Length)].position;
     }
     void Kill()
     {
