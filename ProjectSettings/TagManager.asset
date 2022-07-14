@@ -6,6 +6,11 @@ TagManager:
   tags:
   - CinemachineTarget
   - EnemyTarget
+  - HUD
+  - HUDHealth
+  - HUDDeathScreen
+  - HUDEquipment
+  - Enemy
   layers:
   - Default
   - TransparentFX

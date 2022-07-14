@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 enum GameState
 {
@@ -48,8 +49,31 @@ public class GameManagerScript : MonoBehaviour
 
         return viruses[selectedVirus];
     }
+
     public GameObject GetRandomVirus()
     {
         return viruses[Random.Range(0, viruses.Length)];
     }
+
+    public void RestartLevel()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Quit game");
+        Application.Quit();
+    }
+    /*
+    public void StartLevel1()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        SceneManager.LoadScene("Level1Scene");
+    }*/
 }

@@ -83,7 +83,7 @@ public class EnemyScript : MonoBehaviour
                 agent.destination = playerTarget.transform.position;
                 agent.speed = chaseSpeed;
 
-                if ((playerTarget.transform.position - transform.position).magnitude < 3f && currentDamageDelay == 0)
+                if ((playerTarget.transform.position - transform.position).magnitude < 2f && currentDamageDelay == 0)
                 {
                     player.Damage(damage);
                     currentDamageDelay = damageDelay;

@@ -97,7 +97,6 @@ public class StartSceneManagerScript : MonoBehaviour
         mainMenu.SetActive(true);
         selectMenu.SetActive(false);
         viruses.SetActive(false);
-
     }
 
     public void PressExit()
