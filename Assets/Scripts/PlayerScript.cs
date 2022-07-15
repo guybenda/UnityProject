@@ -199,8 +199,8 @@ public class PlayerScript : MonoBehaviour
                 objectiveText.text = "Objective:\nEscape";
                 return;
             case 2:
-                objectiveText.text = $"Objective:\nKill 15 enemies - {15 - Mathf.Clamp(enemiesKilled, 0, 15)} left\nFind the power up in\nthe abandoned building";
-                if (enemiesKilled >= 15 && objective) Win();
+                objectiveText.text = $"Objective:\nKill 20 enemies - {20 - Mathf.Clamp(enemiesKilled, 0, 20)} left\nFind the power up in\nthe abandoned building";
+                if (enemiesKilled >= 20 && objective) Win();
                 return;
             default:
                 break;
