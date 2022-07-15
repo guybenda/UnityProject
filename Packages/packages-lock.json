@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.alexismorin.lightprobepopulator": {
+      "version": "file:D:/Downloads/com.alexismorin.lightprobepopulator@1.0.0",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.cinemachine": {
       "version": "2.8.6",
       "depth": 0,

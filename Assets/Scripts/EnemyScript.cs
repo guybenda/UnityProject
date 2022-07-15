@@ -83,10 +83,20 @@ public class EnemyScript : MonoBehaviour
                 agent.destination = playerTarget.transform.position;
                 agent.speed = chaseSpeed;
 
-                if ((playerTarget.transform.position - transform.position).magnitude < 2f && currentDamageDelay == 0)
+                if ((playerTarget.transform.position - transform.position).magnitude < 2f)
                 {
-                    player.Damage(damage);
-                    currentDamageDelay = damageDelay;
+                    animator.SetBool("isDamaging", true);
+
+                    if (currentDamageDelay == 0)
+                    {
+
+                        player.Damage(damage);
+                        currentDamageDelay = damageDelay;
+                    }
+                }
+                else
+                {
+                    animator.SetBool("isDamaging", false);
                 }
 
                 if (playerNoticing == 0)
@@ -105,11 +115,12 @@ public class EnemyScript : MonoBehaviour
         if (state == EnemyState.dead)
             return false;
 
-        health -= damage;
+        health = Mathf.Clamp(health - damage, 0, maxHealth);
 
-        if (health <= 0)
+        animator.SetInteger("health", health);
+
+        if (health == 0)
         {
-            health = 0;
             Kill();
             return true;
         }
@@ -150,9 +161,13 @@ public class EnemyScript : MonoBehaviour
 
     IEnumerator DieRoutine()
     {
-        //animator.Play("Z_FallingBack");
         agent.isStopped = true;
-        //alertSprite.gameObject.SetActive(false);
+        for (int i = 0; i < 20; i++)
+        {
+            agent.baseOffset -= 0.35f;
+            yield return new WaitForSeconds(0.05f);
+        }
+
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
