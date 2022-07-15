@@ -21,12 +21,14 @@ public class PlayerScript : MonoBehaviour
 
     InputAction m1;
     InputAction m2;
+    InputAction backCamera;
 
     GameObject hud;
 
     Text healthText;
     Text equipmentText;
     Text objectiveText;
+    RawImage backCameraImage;
 
     // Start is called before the first frame update
     void Start()
@@ -53,9 +55,14 @@ public class PlayerScript : MonoBehaviour
         m2.performed += _ => Shoot2();
         m2.Enable();
 
+        backCamera = new InputAction(binding: "<keyboard>/tab");
+        // += _ => Shoot2();
+        backCamera.Enable();
+
         hud = GameObject.FindGameObjectWithTag("HUD");
         healthText = GameObject.FindGameObjectWithTag("HUDHealth").GetComponent<Text>();
         objectiveText = GameObject.FindGameObjectWithTag("HUDObjective").GetComponent<Text>();
+        backCameraImage = hud.GetComponentInChildren<RawImage>(true);
     }
 
     // Update is called once per frame
@@ -63,6 +70,8 @@ public class PlayerScript : MonoBehaviour
     {
         healthText.text = $"\u2665 {health} / {maxHealth}";
         UpdateObjective();
+
+        backCameraImage.enabled = backCamera.IsPressed();
     }
 
     void FixedUpdate()

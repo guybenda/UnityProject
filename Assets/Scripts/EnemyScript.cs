@@ -164,7 +164,7 @@ public class EnemyScript : MonoBehaviour
         agent.isStopped = true;
         for (int i = 0; i < 20; i++)
         {
-            agent.baseOffset -= 0.35f;
+            agent.baseOffset -= 0.3f;
             yield return new WaitForSeconds(0.05f);
         }
 
