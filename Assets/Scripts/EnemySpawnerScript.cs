@@ -7,7 +7,7 @@ public class EnemySpawnerScript : MonoBehaviour
 {
     public GameObject from;
     public GameObject to;
-    public GameObject enemy;
+    public GameObject enemyToSpawn;
     public GameObject container;
     public float delay = 0.3f;
     public int maxEnemies = 30;
@@ -51,8 +51,7 @@ public class EnemySpawnerScript : MonoBehaviour
         );
 
         position.y = Terrain.activeTerrain.SampleHeight(position);
-        Debug.Log(position.y);
-        enemy = Instantiate(enemy, position, Quaternion.identity, container.transform);
+        var enemy = Instantiate(enemyToSpawn, position, Quaternion.identity, container.transform);
 
         enemy.GetComponent<EnemyScript>().waypoints = waypoints;
         enemy.GetComponentInChildren<SkinnedMeshRenderer>().material = masks[Random.Range(0, masks.Length)];

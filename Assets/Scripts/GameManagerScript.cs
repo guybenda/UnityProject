@@ -15,6 +15,7 @@ public class GameManagerScript : MonoBehaviour
 
     public GameObject[] viruses;
     public int selectedVirus = -1;
+    public Sprite enemySprite;
 
     private void Awake()
     {
@@ -28,6 +29,9 @@ public class GameManagerScript : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         viruses = Resources.LoadAll<GameObject>("Viruses");
+        enemySprite = Resources.Load<Sprite>("EnemyAlert/EnemyAlert");
+        Debug.Log(viruses.Length);
+        Debug.Log(enemySprite);
     }
 
     // Start is called before the first frame update
@@ -69,17 +73,12 @@ public class GameManagerScript : MonoBehaviour
         Debug.Log("Quit game");
         Application.Quit();
     }
-    /*
-    public void StartLevel1()
+
+    public void NextLevel()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        SceneManager.LoadScene("Level1Scene");
-    }*/
-    public void NextLevel()
-    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        
     }
 }

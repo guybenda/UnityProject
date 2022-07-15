@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
     bool wonOrDied = false;
 
     public int enemiesKilled = 0;
+    public bool objective = false;
 
     InputAction m1;
     InputAction m2;
@@ -29,6 +30,7 @@ public class PlayerScript : MonoBehaviour
     Text equipmentText;
     Text objectiveText;
     RawImage backCameraImage;
+    Camera minimapCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -62,12 +64,31 @@ public class PlayerScript : MonoBehaviour
         hud = GameObject.FindGameObjectWithTag("HUD");
         healthText = GameObject.FindGameObjectWithTag("HUDHealth").GetComponent<Text>();
         objectiveText = GameObject.FindGameObjectWithTag("HUDObjective").GetComponent<Text>();
+        minimapCamera = GameObject.FindGameObjectWithTag("MinimapCamera").GetComponent<Camera>();
         backCameraImage = hud.GetComponentInChildren<RawImage>(true);
     }
 
     // Update is called once per frame
     void Update()
     {
+        var cameraLocation = virusModelContainer.transform.position;
+        switch (currentLevel)
+        {
+            case 1:
+                //TODO
+                break;
+            case 2:
+                cameraLocation.y = 150f;
+                break;
+            case 3:
+                cameraLocation.y = 150f;
+                break;
+            default:
+                break;
+        }
+
+        minimapCamera.transform.SetPositionAndRotation(cameraLocation, Quaternion.Euler(90f, 0, 0));
+
         healthText.text = $"\u2665 {health} / {maxHealth}";
         UpdateObjective();
 
@@ -89,13 +110,13 @@ public class PlayerScript : MonoBehaviour
     {
         if (tripleShotTimer > 0)
         {
-            ShootProjectile((Camera.main.transform.forward + Camera.main.transform.right * -0.05f + Camera.main.transform.up * 0.1f) * shootVelocity + Random.insideUnitSphere * 0.1f);
-            ShootProjectile((Camera.main.transform.forward + Camera.main.transform.right * 0.05f + Camera.main.transform.up * 0.2f) * shootVelocity + Random.insideUnitSphere * 0.1f);
-            ShootProjectile((Camera.main.transform.forward + Camera.main.transform.right * 0.15f + Camera.main.transform.up * 0.1f) * shootVelocity + Random.insideUnitSphere * 0.1f);
+            ShootProjectile((Camera.main.transform.forward + Camera.main.transform.right * -0.02f + Camera.main.transform.up * 0.12f) * shootVelocity + Random.insideUnitSphere * 1.6f);
+            ShootProjectile((Camera.main.transform.forward + Camera.main.transform.right * 0.05f + Camera.main.transform.up * 0.18f) * shootVelocity + Random.insideUnitSphere * 1.6f);
+            ShootProjectile((Camera.main.transform.forward + Camera.main.transform.right * 0.12f + Camera.main.transform.up * 0.12f) * shootVelocity + Random.insideUnitSphere * 1.6f);
         }
         else
         {
-            var direction = (Camera.main.transform.forward + Camera.main.transform.right * 0.05f + Camera.main.transform.up * 0.15f) * shootVelocity + Random.insideUnitSphere * 0.8f;
+            var direction = (Camera.main.transform.forward + Camera.main.transform.right * 0.05f + Camera.main.transform.up * 0.15f) * shootVelocity + Random.insideUnitSphere * 1.2f;
             ShootProjectile(direction);
         }
 
@@ -178,8 +199,8 @@ public class PlayerScript : MonoBehaviour
                 objectiveText.text = "Objective:\nEscape";
                 return;
             case 2:
-                objectiveText.text = $"Objective:\nKill 15 enemies\n{15 - enemiesKilled} left";
-                if (enemiesKilled >= 15) Win();
+                objectiveText.text = $"Objective:\nKill 15 enemies - {15 - Mathf.Clamp(enemiesKilled, 0, 15)} left\nFind the power up in\nthe abandoned building";
+                if (enemiesKilled >= 15 && objective) Win();
                 return;
             default:
                 break;
@@ -277,7 +298,7 @@ public class PlayerScript : MonoBehaviour
         var image = hud.GetComponent<Image>();
 
         Color color = image.color;
-        color.a += 0.20f;
+        color.a += 0.30f;
         image.color = color;
         yield return new WaitForFixedUpdate();
 
@@ -285,7 +306,7 @@ public class PlayerScript : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             Color newcolor = image.color;
-            newcolor.a -= 0.02f;
+            newcolor.a -= 0.03f;
             image.color = newcolor;
             yield return new WaitForSeconds(0.05f);
         }

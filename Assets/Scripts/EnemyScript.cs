@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public enum EnemyState
 {
@@ -30,11 +31,16 @@ public class EnemyScript : MonoBehaviour
     private EnemyState state = EnemyState.idle;
     private int playerNoticing = 0;
     private int currentDamageDelay = 0;
+    private SpriteRenderer alertSprite;
+
+    private static readonly Vector3 spriteOrientation = new(90f, 0, 0);
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.layer = 7;
+
+        var currentLevel = SceneManager.GetActiveScene().buildIndex;
 
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -43,6 +49,34 @@ public class EnemyScript : MonoBehaviour
 
         animator.SetBool("isAttacking", false);
         animator.SetInteger("health", health);
+
+        var alert = new GameObject("MinimapSprite");
+        alert.transform.parent = gameObject.transform;
+        alert.transform.localScale = Vector3.one * 4f;
+        alert.layer = 11;
+        alertSprite = alert.AddComponent<SpriteRenderer>();
+        alertSprite.sprite = GameManagerScript.Instance.enemySprite;
+
+
+        switch (currentLevel)
+        {
+            case 1:
+                //TODO
+                break;
+            case 2:
+                alertSprite.transform.localPosition = Vector3.up * 200f;
+                break;
+            case 3:
+                alertSprite.transform.localPosition = Vector3.up * 150f;
+                break;
+            default:
+                break;
+        }
+    }
+
+    void Update()
+    {
+        alertSprite.transform.eulerAngles = spriteOrientation;
     }
 
     // Update is called once per frame
@@ -116,6 +150,7 @@ public class EnemyScript : MonoBehaviour
             return false;
 
         health = Mathf.Clamp(health - damage, 0, maxHealth);
+        playerNoticing = playerNoticeTreshold;
 
         animator.SetInteger("health", health);
 
@@ -130,8 +165,6 @@ public class EnemyScript : MonoBehaviour
     bool TryFindPlayer()
     {
         const int mask = ~(1 << 7);
-        Debug.DrawRay(transform.position, playerTarget.transform.position - transform.position, Color.red, 1f);
-        //if (Physics.Raycast(transform.position + Vector3.up * 2f, (playerCamera.transform.position - Vector3.up * 3) - transform.position, out RaycastHit hit, detectDistance, mask))
         if (Physics.Raycast(transform.position, playerTarget.transform.position - transform.position, out RaycastHit hit, detectDistance, mask))
         {
             //hit.collider.gameObject.transform.localScale = Vector3.zero;
@@ -162,6 +195,8 @@ public class EnemyScript : MonoBehaviour
     IEnumerator DieRoutine()
     {
         agent.isStopped = true;
+        alertSprite.gameObject.SetActive(false);
+
         for (int i = 0; i < 20; i++)
         {
             agent.baseOffset -= 0.3f;
