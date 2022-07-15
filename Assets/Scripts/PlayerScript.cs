@@ -66,6 +66,12 @@ public class PlayerScript : MonoBehaviour
         objectiveText = GameObject.FindGameObjectWithTag("HUDObjective").GetComponent<Text>();
         minimapCamera = GameObject.FindGameObjectWithTag("MinimapCamera").GetComponent<Camera>();
         backCameraImage = hud.GetComponentInChildren<RawImage>(true);
+
+        if (currentLevel == 1)
+        {
+            GameObject.FindGameObjectWithTag("Minimap").SetActive(false);
+            GameObject.FindGameObjectWithTag("MinimapBg").SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -196,7 +202,14 @@ public class PlayerScript : MonoBehaviour
         switch (currentLevel)
         {
             case 1:
-                objectiveText.text = "Objective:\nEscape";
+                if (!objective)
+                {
+                    objectiveText.text = "Objective:\nFind the secret button to escape\nthe lab";
+                }
+                else
+                {
+                    objectiveText.text = "Objective:\nEscape the lab!";
+                }
                 return;
             case 2:
                 objectiveText.text = $"Objective:\nKill 20 enemies - {20 - Mathf.Clamp(enemiesKilled, 0, 20)} left\nFind the power up in\nthe abandoned building";

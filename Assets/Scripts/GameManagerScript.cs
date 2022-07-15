@@ -30,8 +30,6 @@ public class GameManagerScript : MonoBehaviour
 
         viruses = Resources.LoadAll<GameObject>("Viruses");
         enemySprite = Resources.Load<Sprite>("EnemyAlert/EnemyAlert");
-        Debug.Log(viruses.Length);
-        Debug.Log(enemySprite);
     }
 
     // Start is called before the first frame update

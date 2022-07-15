@@ -82,6 +82,12 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (player == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (state == EnemyState.dead) return;
 
         currentDamageDelay = Mathf.Clamp(currentDamageDelay - 1, 0, damageDelay);
