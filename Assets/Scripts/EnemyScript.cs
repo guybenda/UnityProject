@@ -144,6 +144,8 @@ public class EnemyScript : MonoBehaviour
     {
         state = EnemyState.dead;
         StartCoroutine(DieRoutine());
+        player.enemiesKilled++;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 
     IEnumerator DieRoutine()
@@ -152,6 +154,6 @@ public class EnemyScript : MonoBehaviour
         agent.isStopped = true;
         //alertSprite.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

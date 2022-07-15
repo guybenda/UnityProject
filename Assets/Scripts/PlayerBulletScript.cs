@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class PlayerBulletScript : MonoBehaviour
 {
-    public float killTime = 2f;
+    public float killTime = 3f;
     public int damage = 10;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.layer = 9;
-        var collider = gameObject.AddComponent<SphereCollider>();
-        collider.center = Vector3.zero;
-        collider.radius = 0.25f;
-        //collider.isTrigger = true;
+
+        StartCoroutine(AddCollisionRoutine());
 
         Destroy(gameObject, killTime);
     }
@@ -33,15 +31,20 @@ public class PlayerBulletScript : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<EnemyScript>(out EnemyScript enemy))
         {
+            if (enemy.health <= 0) return;
+
             enemy.Damage(damage);
         }
 
         Destroy(gameObject);
     }
 
-    IEnumerator Kill()
+    IEnumerator AddCollisionRoutine()
     {
-        yield return new WaitForSeconds(killTime);
-        Destroy(gameObject, killTime);
+        yield return new WaitForSeconds(0.05f);
+
+        var collider = gameObject.AddComponent<SphereCollider>();
+        collider.center = Vector3.zero;
+        collider.radius = 0.25f;
     }
 }

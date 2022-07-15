@@ -14,12 +14,14 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private float currentDelay = 0f;
     private Transform[] waypoints;
+    private Material[] masks;
 
     // Start is called before the first frame update
     void Start()
     {
         currentDelay = delay;
         waypoints = GameObject.FindGameObjectsWithTag("Waypoint").Select(g => g.transform).ToArray();
+        masks = Resources.LoadAll<Material>("Masks");
     }
 
     // Update is called once per frame
@@ -53,5 +55,6 @@ public class EnemySpawnerScript : MonoBehaviour
         enemy = Instantiate(enemy, position, Quaternion.identity, container.transform);
 
         enemy.GetComponent<EnemyScript>().waypoints = waypoints;
+        enemy.GetComponentInChildren<SkinnedMeshRenderer>().material = masks[Random.Range(0, masks.Length)];
     }
 }

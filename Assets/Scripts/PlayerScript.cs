@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
@@ -13,6 +14,10 @@ public class PlayerScript : MonoBehaviour
     public float shootVelocity = 30f;
 
     int tripleShotTimer = 0;
+    int currentLevel = 0;
+    bool wonOrDied = false;
+
+    public int enemiesKilled = 0;
 
     InputAction m1;
     InputAction m2;
@@ -21,6 +26,7 @@ public class PlayerScript : MonoBehaviour
 
     Text healthText;
     Text equipmentText;
+    Text objectiveText;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +36,8 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("NO VIRUS CONTAINER CONNECTED TO PLAYER!");
             return;
         }
+
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
 
         Instantiate(GameManagerScript.Instance.GetVirus()).transform.parent = virusModelContainer.transform;
         virusModelContainer.transform.GetChild(0).transform.localPosition = Vector3.zero;
@@ -47,12 +55,14 @@ public class PlayerScript : MonoBehaviour
 
         hud = GameObject.FindGameObjectWithTag("HUD");
         healthText = GameObject.FindGameObjectWithTag("HUDHealth").GetComponent<Text>();
+        objectiveText = GameObject.FindGameObjectWithTag("HUDObjective").GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
         healthText.text = $"\u2665 {health} / {maxHealth}";
+        UpdateObjective();
     }
 
     void FixedUpdate()
@@ -121,14 +131,19 @@ public class PlayerScript : MonoBehaviour
 
     void Die()
     {
+        if (wonOrDied) return;
+
         m1.Disable();
         m2.Disable();
-
+        wonOrDied = true;
         StartCoroutine(DieRoutine());
     }
 
     public void Win()
     {
+        if (wonOrDied) return;
+
+        wonOrDied = true;
         StartCoroutine(VictoryRoutine());
     }
 
@@ -141,6 +156,22 @@ public class PlayerScript : MonoBehaviour
                 break;
             case PowerupType.Health:
                 break;
+            default:
+                break;
+        }
+    }
+
+    public void UpdateObjective()
+    {
+        switch (currentLevel)
+        {
+            case 1:
+                objectiveText.text = "Objective:\nEscape";
+                return;
+            case 2:
+                objectiveText.text = $"Objective:\nKill 15 enemies\n{15 - enemiesKilled} left";
+                if (enemiesKilled >= 15) Win();
+                return;
             default:
                 break;
         }
