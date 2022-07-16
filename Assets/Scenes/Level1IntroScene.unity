@@ -239,6 +239,7 @@ MonoBehaviour:
   viruses: []
   selectedVirus: -1
   enemySprite: {fileID: 0}
+  objectiveSprite: {fileID: 0}
 --- !u!4 &193283357
 Transform:
   m_ObjectHideFlags: 0
@@ -640,6 +641,7 @@ GameObject:
   - component: {fileID: 4040408393094049620}
   - component: {fileID: 4040408393094049623}
   - component: {fileID: 4040408393094049622}
+  - component: {fileID: 4040408393094049624}
   m_Layer: 5
   m_Name: StartText
   m_TagString: Untagged
@@ -753,8 +755,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 193283356}
-        m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
+      - m_Target: {fileID: 4040408393094049624}
+        m_TargetAssemblyTypeName: IntroButtonScript, Assembly-CSharp
         m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
@@ -780,6 +782,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0.06579302, g: 0.41509432, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
+--- !u!114 &4040408393094049624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4040408393094049616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b026f21685bf984d8d09d2270bc8437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4040408393150684624
 GameObject:
   m_ObjectHideFlags: 0
