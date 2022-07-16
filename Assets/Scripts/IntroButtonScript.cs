@@ -8,4 +8,9 @@ public class IntroButtonScript : MonoBehaviour
     {
         GameManagerScript.Instance.NextLevel();
     }
+
+    public void Quit()
+    {
+        GameManagerScript.Instance.Quit();
+    }
 }

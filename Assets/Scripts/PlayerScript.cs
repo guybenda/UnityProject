@@ -77,7 +77,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         var cameraLocation = virusModelContainer.transform.position;
-        cameraLocation.y = 250f;
+        cameraLocation.y = currentLevel == 5 ? 250f : 500f;
 
         minimapCamera.transform.SetPositionAndRotation(cameraLocation, Quaternion.Euler(90f, 0, 0));
 
@@ -103,7 +103,7 @@ public class PlayerScript : MonoBehaviour
 
     void Shoot()
     {
-        audioSource.PlayOneShot(shoot, 0.2f);
+        audioSource.PlayOneShot(shoot, 0.1f);
         if (tripleShotTimer > 0)
         {
             ShootProjectile((Camera.main.transform.forward + Camera.main.transform.right * -0.02f + Camera.main.transform.up * 0.12f) * shootVelocity + Random.insideUnitSphere * 1.6f);
