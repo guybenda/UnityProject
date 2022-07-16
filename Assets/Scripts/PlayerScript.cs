@@ -14,6 +14,8 @@ public class PlayerScript : MonoBehaviour
     public float shootVelocity = 30f;
 
     public int tripleShotTimer = 0;
+    public AudioClip shoot;
+    public AudioSource audioSource;
 
     int currentLevel = 0;
     bool wonOrDied = false;
@@ -101,6 +103,7 @@ public class PlayerScript : MonoBehaviour
 
     void Shoot()
     {
+        audioSource.PlayOneShot(shoot, 0.2f);
         if (tripleShotTimer > 0)
         {
             ShootProjectile((Camera.main.transform.forward + Camera.main.transform.right * -0.02f + Camera.main.transform.up * 0.12f) * shootVelocity + Random.insideUnitSphere * 1.6f);
@@ -127,6 +130,7 @@ public class PlayerScript : MonoBehaviour
         var rigidbody = proj.AddComponent<Rigidbody>();
         rigidbody.AddTorque(Random.insideUnitSphere * 80f, ForceMode.VelocityChange);
         rigidbody.AddForce(direction, ForceMode.VelocityChange);
+
     }
 
     public void Damage(int damage)
