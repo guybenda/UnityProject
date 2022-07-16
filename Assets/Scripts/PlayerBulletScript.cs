@@ -27,8 +27,6 @@ public class PlayerBulletScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 6 || collision.gameObject.layer == 9) return;
 
-        //Debug.Log("AM COLLIDE!! " + collision.collider.name);
-
         if (collision.gameObject.TryGetComponent<EnemyScript>(out EnemyScript enemy))
         {
             if (enemy.health <= 0) return;

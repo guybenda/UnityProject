@@ -16,6 +16,7 @@ public class GameManagerScript : MonoBehaviour
     public GameObject[] viruses;
     public int selectedVirus = -1;
     public Sprite enemySprite;
+    public Sprite objectiveSprite;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class GameManagerScript : MonoBehaviour
 
         viruses = Resources.LoadAll<GameObject>("Viruses");
         enemySprite = Resources.Load<Sprite>("EnemyAlert/EnemyAlert");
+        objectiveSprite = Resources.Load<Sprite>("Objective/Objective");
     }
 
     // Start is called before the first frame update

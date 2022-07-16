@@ -60,13 +60,10 @@ public class EnemyScript : MonoBehaviour
 
         switch (currentLevel)
         {
-            case 1:
-                //TODO
-                break;
-            case 2:
+            case 5:
                 alertSprite.transform.localPosition = Vector3.up * 200f;
                 break;
-            case 3:
+            case 7:
                 alertSprite.transform.localPosition = Vector3.up * 150f;
                 break;
             default:

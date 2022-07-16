@@ -22,13 +22,11 @@ public class PlayerScript : MonoBehaviour
     public bool objective = false;
 
     InputAction m1;
-    InputAction m2;
     InputAction backCamera;
 
     GameObject hud;
 
     Text healthText;
-    Text equipmentText;
     Text objectiveText;
     RawImage backCameraImage;
     Camera minimapCamera;
@@ -48,18 +46,11 @@ public class PlayerScript : MonoBehaviour
         virusModelContainer.transform.GetChild(0).transform.localPosition = Vector3.zero;
         virusModelContainer.transform.GetChild(0).transform.localRotation = Quaternion.identity;
 
-        //projectile = GameManagerScript.Instance.GetVirus();
-
         m1 = new InputAction(binding: "<Mouse>/leftButton");
         m1.performed += _ => Shoot();
         m1.Enable();
 
-        /*m2 = new InputAction(binding: "<Mouse>/rightButton");
-        m2.performed += _ => Shoot2();
-        m2.Enable();*/
-
         backCamera = new InputAction(binding: "<keyboard>/tab");
-        // += _ => Shoot2();
         backCamera.Enable();
 
         hud = GameObject.FindGameObjectWithTag("HUD");
@@ -68,7 +59,7 @@ public class PlayerScript : MonoBehaviour
         minimapCamera = GameObject.FindGameObjectWithTag("MinimapCamera").GetComponent<Camera>();
         backCameraImage = hud.GetComponentInChildren<RawImage>(true);
 
-        if (currentLevel == 1 || currentLevel == 4)
+        if (currentLevel == 1 || currentLevel == 2)
         {
             GameObject.FindGameObjectWithTag("Minimap").SetActive(false);
             GameObject.FindGameObjectWithTag("MinimapBg").SetActive(false);
@@ -82,20 +73,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         var cameraLocation = virusModelContainer.transform.position;
-        switch (currentLevel)
-        {
-            case 1:
-                //TODO
-                break;
-            case 2:
-                cameraLocation.y = 150f;
-                break;
-            case 3:
-                cameraLocation.y = 150f;
-                break;
-            default:
-                break;
-        }
+        cameraLocation.y = 250f;
 
         minimapCamera.transform.SetPositionAndRotation(cameraLocation, Quaternion.Euler(90f, 0, 0));
 
@@ -113,7 +91,6 @@ public class PlayerScript : MonoBehaviour
     void OnDestroy()
     {
         m1.Disable();
-        m2.Disable();
     }
 
     void Shoot()
@@ -146,11 +123,6 @@ public class PlayerScript : MonoBehaviour
         rigidbody.AddForce(direction, ForceMode.VelocityChange);
     }
 
-    /*void Shoot2()
-    {
-        //TODO
-    }*/
-
     public void Damage(int damage)
     {
         if (health <= 0) return;
@@ -173,7 +145,6 @@ public class PlayerScript : MonoBehaviour
         if (wonOrDied) return;
 
         m1.Disable();
-        m2.Disable();
         wonOrDied = true;
         StartCoroutine(DieRoutine());
     }
@@ -204,7 +175,7 @@ public class PlayerScript : MonoBehaviour
     {
         switch (currentLevel)
         {
-            case 1:
+            case 3:
                 if (!objective)
                 {
                     objectiveText.text = "Objective:\nFind the secret button to escape\nthe lab";
@@ -214,14 +185,16 @@ public class PlayerScript : MonoBehaviour
                     objectiveText.text = "Objective:\nEscape the lab!";
                 }
                 return;
-            case 2:
+            case 5:
                 objectiveText.text = $"Objective:\nKill 20 enemies - {20 - Mathf.Clamp(enemiesKilled, 0, 20)} left\nFind the power up in\nthe abandoned building";
                 if (enemiesKilled >= 20 && objective) Win();
                 return;
-            case 3:
+            case 7:
                 objectiveText.text = "Objective:\nEscape the city!";
+                if (objective) Win();
                 return;
             default:
+                objectiveText.text = "";
                 break;
         }
     }

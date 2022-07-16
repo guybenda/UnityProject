@@ -1590,9 +1590,9 @@ WindZone:
   m_Enabled: 1
   m_Mode: 0
   m_Radius: 20
-  m_WindMain: 5
-  m_WindTurbulence: 0.5
-  m_WindPulseMagnitude: 1.3
+  m_WindMain: 9
+  m_WindTurbulence: 0.7
+  m_WindPulseMagnitude: 1.5
   m_WindPulseFrequency: 0.01
 --- !u!4 &863411725
 Transform:
@@ -56478,6 +56478,7 @@ MonoBehaviour:
   viruses: []
   selectedVirus: 0
   enemySprite: {fileID: 0}
+  objectiveSprite: {fileID: 0}
 --- !u!4 &1983334595
 Transform:
   m_ObjectHideFlags: 0

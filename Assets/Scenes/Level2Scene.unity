@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.5920895, g: 0.60746473, b: 0.6064822, a: 1}
+  m_IndirectSpecularColor: {r: 0.59277534, g: 0.6080235, b: 0.60725945, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -952,6 +952,10 @@ PrefabInstance:
     - target: {fileID: 4792877697375968642, guid: 12da1cafa0a8cad4c886ac151e5eef12, type: 3}
       propertyPath: SpeedChangeRate
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584581853977685263, guid: 12da1cafa0a8cad4c886ac151e5eef12, type: 3}
+      propertyPath: orthographic size
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7166016139815599554, guid: 12da1cafa0a8cad4c886ac151e5eef12, type: 3}
       propertyPath: m_Lens.FarClipPlane

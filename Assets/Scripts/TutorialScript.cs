@@ -3,17 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-enum TutorialState
-{
-    start,
-    walked,
-    shot,
-    collected
-}
-
 public class TutorialScript : MonoBehaviour
 {
-    TutorialState state = TutorialState.start;
     public GameObject walkText;
     public GameObject shotText;
     public GameObject collectedText;
@@ -34,12 +25,6 @@ public class TutorialScript : MonoBehaviour
             StartCoroutine(Walked());
         };
         moved.Enable();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     IEnumerator Walked()
@@ -67,7 +52,7 @@ public class TutorialScript : MonoBehaviour
         powerup.SetActive(true);
 
         var player = GameObject.FindGameObjectWithTag("PlayerContainer").GetComponent<PlayerScript>();
-        while(player.tripleShotTimer <= 0)
+        while (player.tripleShotTimer <= 0)
         {
             yield return new WaitForSeconds(0.2f);
         }

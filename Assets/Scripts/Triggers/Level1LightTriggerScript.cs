@@ -21,13 +21,17 @@ public class Level1LightTriggerScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player") && !other.CompareTag("PlayerContainer")) return;
 
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().objective = true;
+        GameObject.FindGameObjectWithTag("PlayerContainer").GetComponent<PlayerScript>().objective = true;
         obj.SetActive(true);
 
         var explosionSource = GameObject.FindGameObjectWithTag("ExplosionSource");
-        var wallParts = GameObject.FindGameObjectsWithTag("WallParts").Select(g => g.GetComponent<Rigidbody>()).ToArray();
+        var wallParts = GameObject.FindGameObjectsWithTag("WallParts").Select(g =>
+        {
+            g.GetComponent<Level1ColliderWallScript>().health = 3;
+            return g.GetComponent<Rigidbody>();
+        }).ToArray();
 
         foreach (var part in wallParts)
         {
