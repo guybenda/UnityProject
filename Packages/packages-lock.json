@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.alexismorin.lightprobepopulator": {
-      "version": "file:D:/Downloads/com.alexismorin.lightprobepopulator@1.0.0",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.autodesk.fbx": {
       "version": "4.1.1",
       "depth": 1,
