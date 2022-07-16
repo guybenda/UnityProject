@@ -60,8 +60,6 @@ public class GameManagerScript : MonoBehaviour
 
     public void RestartLevel()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -74,9 +72,6 @@ public class GameManagerScript : MonoBehaviour
 
     public void NextLevel()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

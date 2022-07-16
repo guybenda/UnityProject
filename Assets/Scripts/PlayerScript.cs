@@ -13,7 +13,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject virusModelContainer;
     public float shootVelocity = 30f;
 
-    int tripleShotTimer = 0;
+    public int tripleShotTimer = 0;
+
     int currentLevel = 0;
     bool wonOrDied = false;
 
@@ -53,9 +54,9 @@ public class PlayerScript : MonoBehaviour
         m1.performed += _ => Shoot();
         m1.Enable();
 
-        m2 = new InputAction(binding: "<Mouse>/rightButton");
+        /*m2 = new InputAction(binding: "<Mouse>/rightButton");
         m2.performed += _ => Shoot2();
-        m2.Enable();
+        m2.Enable();*/
 
         backCamera = new InputAction(binding: "<keyboard>/tab");
         // += _ => Shoot2();
@@ -67,11 +68,14 @@ public class PlayerScript : MonoBehaviour
         minimapCamera = GameObject.FindGameObjectWithTag("MinimapCamera").GetComponent<Camera>();
         backCameraImage = hud.GetComponentInChildren<RawImage>(true);
 
-        if (currentLevel == 1)
+        if (currentLevel == 1 || currentLevel == 4)
         {
             GameObject.FindGameObjectWithTag("Minimap").SetActive(false);
             GameObject.FindGameObjectWithTag("MinimapBg").SetActive(false);
         }
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -142,17 +146,16 @@ public class PlayerScript : MonoBehaviour
         rigidbody.AddForce(direction, ForceMode.VelocityChange);
     }
 
-    void Shoot2()
+    /*void Shoot2()
     {
         //TODO
-    }
+    }*/
 
     public void Damage(int damage)
     {
         if (health <= 0) return;
 
         health -= damage;
-        Debug.Log("OW! " + damage);
 
         if (health <= 0)
         {
@@ -214,6 +217,9 @@ public class PlayerScript : MonoBehaviour
             case 2:
                 objectiveText.text = $"Objective:\nKill 20 enemies - {20 - Mathf.Clamp(enemiesKilled, 0, 20)} left\nFind the power up in\nthe abandoned building";
                 if (enemiesKilled >= 20 && objective) Win();
+                return;
+            case 3:
+                objectiveText.text = "Objective:\nEscape the city!";
                 return;
             default:
                 break;
