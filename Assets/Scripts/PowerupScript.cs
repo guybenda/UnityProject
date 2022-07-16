@@ -33,7 +33,7 @@ public class PowerupScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().AddPowerUp(type);
+            GameObject.FindGameObjectWithTag("PlayerContainer").GetComponent<PlayerScript>().AddPowerUp(type);
 
             Destroy(gameObject);
         }

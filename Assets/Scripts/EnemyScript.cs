@@ -44,7 +44,7 @@ public class EnemyScript : MonoBehaviour
 
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
+        player = GameObject.FindWithTag("PlayerContainer").GetComponent<PlayerScript>();
         playerTarget = GameObject.FindWithTag("EnemyTarget");
 
         animator.SetBool("isAttacking", false);
@@ -83,10 +83,7 @@ public class EnemyScript : MonoBehaviour
     void FixedUpdate()
     {
         if (player == null)
-        {
-            Destroy(gameObject);
             return;
-        }
 
         if (state == EnemyState.dead) return;
 
@@ -209,7 +206,7 @@ public class EnemyScript : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
 }

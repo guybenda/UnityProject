@@ -19,6 +19,7 @@ TagManager:
   - ExplosionSource
   - MinimapBg
   - Minimap
+  - PlayerContainer
   layers:
   - Default
   - TransparentFX

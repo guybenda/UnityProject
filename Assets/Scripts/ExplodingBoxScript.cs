@@ -26,7 +26,6 @@ public class ExplodingBoxScript : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, enemy.transform.position) < 8f)
                 {
-                    Debug.Log("Damage! " + enemy.name);
                     enemy.GetComponent<EnemyScript>().Damage(100);
                 }
             }
