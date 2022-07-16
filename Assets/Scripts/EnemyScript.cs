@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -35,7 +34,6 @@ public class EnemyScript : MonoBehaviour
 
     private static readonly Vector3 spriteOrientation = new(90f, 0, 0);
 
-    // Start is called before the first frame update
     void Start()
     {
         gameObject.layer = 7;
@@ -76,7 +74,6 @@ public class EnemyScript : MonoBehaviour
         alertSprite.transform.eulerAngles = spriteOrientation;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (player == null)

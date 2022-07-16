@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class StartSceneManagerScript : MonoBehaviour
 {
@@ -14,7 +11,7 @@ public class StartSceneManagerScript : MonoBehaviour
     public const int maxVirus = 10;
     public const float virusGap = 1.5f;
 
-    public float smoothTime = 0.001F;
+    public float smoothTime = 0.0005F;
     private Vector3 velocity = Vector3.zero;
     private Vector3 targetPosition = Vector3.zero;
     private Vector3 originalPosition = Vector3.zero;
@@ -86,10 +83,8 @@ public class StartSceneManagerScript : MonoBehaviour
     public void PressBegin()
     {
         GameManagerScript.Instance.selectedVirus = currentVirus;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
 
-        SceneManager.LoadScene("Level1Scene");
+        GameManagerScript.Instance.NextLevel();
     }
 
     public void PressBack()

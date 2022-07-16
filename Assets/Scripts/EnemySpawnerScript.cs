@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 public class EnemySpawnerScript : MonoBehaviour
 {
@@ -22,12 +20,6 @@ public class EnemySpawnerScript : MonoBehaviour
         currentDelay = delay;
         waypoints = GameObject.FindGameObjectsWithTag("Waypoint").Select(g => g.transform).ToArray();
         masks = Resources.LoadAll<Material>("Masks");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void FixedUpdate()

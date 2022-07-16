@@ -3,7 +3,7 @@
   <TypeDate>
     <guid>0720b098b32d2c84489d096304cf8b00</guid>
     <fileName>Assets/Scripts/EnemyScript.cs</fileName>
-    <timeStamp>2022-07-15T20:53:08.00053+03:00</timeStamp>
+    <timeStamp>2022-07-16T13:01:57.8693558+03:00</timeStamp>
     <typeFullName>
       <string>EnemyState</string>
       <string>EnemyScript</string>
@@ -22,7 +22,7 @@
   <TypeDate>
     <guid>7ef339ec708ff3b4a8357f23daa41591</guid>
     <fileName>Assets/Scripts/ExplodingBoxScript.cs</fileName>
-    <timeStamp>2022-07-15T00:41:35.1232687+03:00</timeStamp>
+    <timeStamp>2022-07-16T10:31:30.1228193+03:00</timeStamp>
     <typeFullName>
       <string>ExplodingBoxScript</string>
     </typeFullName>
@@ -31,7 +31,7 @@
   <TypeDate>
     <guid>c7e2d5de5b1aaf948a1677f8449aed92</guid>
     <fileName>Assets/Scripts/FallProtectionScript.cs</fileName>
-    <timeStamp>2022-07-15T15:19:22.8531414+03:00</timeStamp>
+    <timeStamp>2022-07-16T09:43:19.8138761+03:00</timeStamp>
     <typeFullName>
       <string>FallProtectionScript</string>
     </typeFullName>
@@ -40,7 +40,7 @@
   <TypeDate>
     <guid>0e297235637c9f2428417dfacdcec2e2</guid>
     <fileName>Assets/Scripts/GameManagerScript.cs</fileName>
-    <timeStamp>2022-07-15T20:43:05.110067+03:00</timeStamp>
+    <timeStamp>2022-07-16T13:11:48.0362099+03:00</timeStamp>
     <typeFullName>
       <string>GameState</string>
       <string>GameManagerScript</string>
@@ -50,7 +50,7 @@
   <TypeDate>
     <guid>5e8722dc90eb1474f90072aee553eed8</guid>
     <fileName>Assets/Scripts/PlayerBulletScript.cs</fileName>
-    <timeStamp>2022-07-15T10:50:15.8718634+03:00</timeStamp>
+    <timeStamp>2022-07-16T12:57:40.2036962+03:00</timeStamp>
     <typeFullName>
       <string>PlayerBulletScript</string>
     </typeFullName>
@@ -59,7 +59,7 @@
   <TypeDate>
     <guid>b64641538303bb54ab76d55cacde9a53</guid>
     <fileName>Assets/Scripts/PlayerScript.cs</fileName>
-    <timeStamp>2022-07-15T22:10:57.5683429+03:00</timeStamp>
+    <timeStamp>2022-07-16T13:34:08.8406157+03:00</timeStamp>
     <typeFullName>
       <string>PlayerScript</string>
     </typeFullName>
@@ -68,7 +68,7 @@
   <TypeDate>
     <guid>714631341b4857b4d8da0ca20bf79af1</guid>
     <fileName>Assets/Scripts/PowerupScript.cs</fileName>
-    <timeStamp>2022-07-15T00:00:45.9596813+03:00</timeStamp>
+    <timeStamp>2022-07-16T10:32:25.6761952+03:00</timeStamp>
     <typeFullName>
       <string>PowerupType</string>
       <string>PowerupScript</string>
@@ -87,7 +87,7 @@
   <TypeDate>
     <guid>85c79a96d1f699c4793c29e613ebf222</guid>
     <fileName>Assets/Scripts/Triggers/Level1EndTriggerScript.cs</fileName>
-    <timeStamp>2022-07-14T23:12:48.8317962+03:00</timeStamp>
+    <timeStamp>2022-07-16T13:37:02.6171762+03:00</timeStamp>
     <typeFullName>
       <string>Level1EndTriggerScript</string>
     </typeFullName>
@@ -96,7 +96,7 @@
   <TypeDate>
     <guid>25a206122fe68bb4c8b30a91b2b79978</guid>
     <fileName>Assets/Scripts/Triggers/Level1LightTriggerScript.cs</fileName>
-    <timeStamp>2022-07-15T22:12:15.347629+03:00</timeStamp>
+    <timeStamp>2022-07-16T13:35:05.4448398+03:00</timeStamp>
     <typeFullName>
       <string>Level1LightTriggerScript</string>
     </typeFullName>
@@ -105,7 +105,7 @@
   <TypeDate>
     <guid>edd8b97055876d44eb972b8953e6e63f</guid>
     <fileName>Assets/Scripts/Triggers/Level2EndTriggerScript.cs</fileName>
-    <timeStamp>2022-07-15T18:26:38.2641846+03:00</timeStamp>
+    <timeStamp>2022-07-16T13:37:44.2947725+03:00</timeStamp>
     <typeFullName>
       <string>Level2EndTriggerScript</string>
     </typeFullName>
@@ -329,6 +329,54 @@
     <guid>71369e1df01d140e5888122d9de3bd6c</guid>
     <fileName>Assets/OldAssets/Imports/Conifers [BOTD]/Render Pipeline Support/Built-in RP/CTI Runtime Components/Scripts/Editor/CTI_ShaderGUI.cs</fileName>
     <timeStamp>2022-05-24T21:19:56.4946677+03:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3f06a07a829278c42883746bc8935235</guid>
+    <fileName>Assets/Editor/BuildReportInspector.cs</fileName>
+    <timeStamp>2022-07-16T00:28:16.1809637+03:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ffeeacb56e9f983468f1d24d940bbfaa</guid>
+    <fileName>Assets/Scripts/TutorialScript.cs</fileName>
+    <timeStamp>2022-07-16T15:19:50.3067577+03:00</timeStamp>
+    <typeFullName>
+      <string>TutorialScript</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>6fcd2d0ed406e4e0093d1f6f1bf7c603</guid>
+    <fileName>Assets/Imports/Simple Helvetica/SimpleHelvetica.cs</fileName>
+    <timeStamp>2022-07-16T09:44:22.0444455+03:00</timeStamp>
+    <typeFullName>
+      <string>SimpleHelvetica</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>ee23828b4e47fd540882330cab89233b</guid>
+    <fileName>Assets/Scripts/Colliders/Level1ColliderWallScript.cs</fileName>
+    <timeStamp>2022-07-16T13:26:25.533346+03:00</timeStamp>
+    <typeFullName>
+      <string>Level1ColliderWallScript</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>3ca5f4b3156e63c48b7e5801f1830ded</guid>
+    <fileName>Assets/Scripts/Colliders/ShottableScript.cs</fileName>
+    <timeStamp>2022-07-16T12:14:20.965202+03:00</timeStamp>
+    <typeFullName>
+      <string>ShottableScript</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>db6018bbf9d8345dfa08905b6c7bf186</guid>
+    <fileName>Assets/Imports/Simple Helvetica/Editor/SimpleHelveticaCustomEditor.cs</fileName>
+    <timeStamp>2022-07-16T09:44:36.8808841+03:00</timeStamp>
     <typeFullName />
   </TypeDate>
 </ArrayOfTypeDate>

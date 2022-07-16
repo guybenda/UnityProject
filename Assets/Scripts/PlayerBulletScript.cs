@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBulletScript : MonoBehaviour
@@ -12,15 +10,11 @@ public class PlayerBulletScript : MonoBehaviour
     {
         gameObject.layer = 9;
 
-        StartCoroutine(AddCollisionRoutine());
+        var collider = gameObject.AddComponent<SphereCollider>();
+        collider.center = Vector3.zero;
+        collider.radius = 0.25f;
 
         Destroy(gameObject, killTime);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void OnCollisionEnter(Collision collision)
@@ -35,14 +29,5 @@ public class PlayerBulletScript : MonoBehaviour
         }
 
         Destroy(gameObject);
-    }
-
-    IEnumerator AddCollisionRoutine()
-    {
-        yield return new WaitForSeconds(0.05f);
-
-        var collider = gameObject.AddComponent<SphereCollider>();
-        collider.center = Vector3.zero;
-        collider.radius = 0.25f;
     }
 }

@@ -1,22 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 public class Level1LightTriggerScript : MonoBehaviour
 {
     public GameObject obj;
 
-    // Start is called before the first frame update
     void Start()
     {
         obj.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void OnTriggerEnter(Collider other)

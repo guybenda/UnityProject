@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Level2EndTriggerScript : MonoBehaviour
@@ -7,7 +5,6 @@ public class Level2EndTriggerScript : MonoBehaviour
     private SpriteRenderer sprite;
     private static readonly Vector3 spriteOrientation = new(90f, 0, 0);
 
-    // Start is called before the first frame update
     void Start()
     {
         var alert = new GameObject("MinimapSprite");
@@ -19,7 +16,6 @@ public class Level2EndTriggerScript : MonoBehaviour
         sprite.transform.localPosition = Vector3.up * 500f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         sprite.transform.eulerAngles = spriteOrientation;

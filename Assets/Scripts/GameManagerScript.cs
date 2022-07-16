@@ -1,13 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
-enum GameState
-{
-    test
-}
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -32,17 +24,6 @@ public class GameManagerScript : MonoBehaviour
         viruses = Resources.LoadAll<GameObject>("Viruses");
         enemySprite = Resources.Load<Sprite>("EnemyAlert/EnemyAlert");
         objectiveSprite = Resources.Load<Sprite>("Objective/Objective");
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public GameObject GetVirus()
