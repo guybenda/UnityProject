@@ -10980,24 +10980,8 @@ PrefabInstance:
       value: 0.31139433
       objectReference: {fileID: 0}
     - target: {fileID: 283446183828991106, guid: 12da1cafa0a8cad4c886ac151e5eef12, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.6788149
-      objectReference: {fileID: 0}
-    - target: {fileID: 283446183828991106, guid: 12da1cafa0a8cad4c886ac151e5eef12, type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.3313665
-      objectReference: {fileID: 0}
-    - target: {fileID: 283446183828991106, guid: 12da1cafa0a8cad4c886ac151e5eef12, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 283446183828991106, guid: 12da1cafa0a8cad4c886ac151e5eef12, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 283446183828991106, guid: 12da1cafa0a8cad4c886ac151e5eef12, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 283446183828991109, guid: 12da1cafa0a8cad4c886ac151e5eef12, type: 3}
       propertyPath: far clip plane

@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
+using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class PlayerScript : MonoBehaviour
     Text objectiveText;
     RawImage backCameraImage;
     Camera minimapCamera;
+    Image minimapArrow;
 
     // Start is called before the first frame update
     void Start()
@@ -56,8 +59,9 @@ public class PlayerScript : MonoBehaviour
         objectiveText = GameObject.FindGameObjectWithTag("HUDObjective").GetComponent<Text>();
         minimapCamera = GameObject.FindGameObjectWithTag("MinimapCamera").GetComponent<Camera>();
         backCameraImage = hud.GetComponentInChildren<RawImage>(true);
+        minimapArrow = GameObject.FindGameObjectWithTag("MinimapArrow").GetComponent<Image>();
 
-        if (currentLevel == 1 || currentLevel == 2)
+        if (currentLevel == 1 || currentLevel == 3)
         {
             GameObject.FindGameObjectWithTag("Minimap").SetActive(false);
             GameObject.FindGameObjectWithTag("MinimapBg").SetActive(false);
@@ -74,6 +78,10 @@ public class PlayerScript : MonoBehaviour
         cameraLocation.y = 250f;
 
         minimapCamera.transform.SetPositionAndRotation(cameraLocation, Quaternion.Euler(90f, 0, 0));
+
+        var arrowRotation = Vector3.zero;
+        arrowRotation.z = -Camera.main.transform.rotation.eulerAngles.y;
+        minimapArrow.rectTransform.rotation = Quaternion.Euler(arrowRotation);
 
         healthText.text = $"\u2665 {health} / {maxHealth}";
         UpdateObjective();

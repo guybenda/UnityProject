@@ -8,7 +8,13 @@ public class FallProtectionScript : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
-            GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(spawn.position, spawn.rotation);
+            Debug.Log("Coll " + other.gameObject.name);
+            var player = GameObject.FindGameObjectWithTag("Player");
+            var charController = player.GetComponent<CharacterController>();
+
+            charController.enabled = false;
+            player.transform.position = spawn.position;
+            charController.enabled = true;
         }
     }
 }
