@@ -8,7 +8,6 @@ public class FallProtectionScript : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
-            Debug.Log("Coll " + other.gameObject.name);
             var player = GameObject.FindGameObjectWithTag("Player");
             var charController = player.GetComponent<CharacterController>();
 

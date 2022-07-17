@@ -39,7 +39,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (virusModelContainer == null)
         {
-            Debug.Log("NO VIRUS CONTAINER CONNECTED TO PLAYER!");
             return;
         }
 

@@ -85,7 +85,6 @@ public class EnemyScript : MonoBehaviour
 
         if (TryFindPlayer())
         {
-            //Debug.Log(gameObject.name + " CAN SEE PLAYER - " + playerNoticing);
             playerNoticing = Mathf.Clamp(playerNoticing + 4, 0, playerNoticeTreshold);
         }
         else

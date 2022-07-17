@@ -7,8 +7,6 @@ public class ExplodingBoxScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 9)
         {
-            //Debug.Log("AM COLLIDE!! " + collision.collider.name);
-
             foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
                 if (Vector3.Distance(transform.position, enemy.transform.position) < 8f)
