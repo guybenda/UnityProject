@@ -9,7 +9,7 @@ public class Level2EndTriggerScript : MonoBehaviour
     {
         var alert = new GameObject("MinimapSprite");
         alert.transform.parent = gameObject.transform;
-        alert.transform.localScale = Vector3.one * 60f;
+        alert.transform.localScale = Vector3.one * 40f;
         alert.layer = 11;
         sprite = alert.AddComponent<SpriteRenderer>();
         sprite.sprite = GameManagerScript.Instance.objectiveSprite;
